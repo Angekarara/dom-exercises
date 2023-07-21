@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="items" placeholder="Enter item">
+    <button id="add">Add</button>
+    <ul id="todoList"></ul>
+
+</body>
+</html>
+<script>
+function itemAdd(){
+    const input = document.getElementById('items').value
+    const text = document.createTextNode(input)
+
+    const li = document.createElement('li')
+    li.appendChild(text);
+    document.getElementById('todoList').appendChild(li)
+    document.getElementById('items').value='';
+
+    const btn = document.createElement('button')
+    btn.textContent = 'Remove'
+    btn.style.marginLeft = '10px'
+    li.appendChild(btn)
+
+    btn.addEventListener('click', function(){
+        li.remove();
+    })
+    const checkbox = document.createElement('checkbox')
+    li.appendChild(checkbox)
+    
+}
+document.getElementById('add').addEventListener('click', itemAdd)
+
+</script>
