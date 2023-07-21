@@ -5,10 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+body{
+    background-color: black;
+    padding-top: 100px;
+    width: 500px;
+    padding-left: 50px;
+}
+.container{
+    background-color: antiquewhite;
+    place-items: center;
+    padding-left: 50px;
+    padding-top: 100px;
+    height: 500px;
+
+}
+
+</style>
 <body>
+    <div class="container">
     <input type="text" id="items" placeholder="Enter item">
     <button id="add">Add</button>
     <ul id="todoList"></ul>
+</div>
 
 </body>
 </html>
@@ -17,10 +36,20 @@ function itemAdd(){
     const input = document.getElementById('items').value
     const text = document.createTextNode(input)
 
+    
+
     const li = document.createElement('li')
     li.appendChild(text);
     document.getElementById('todoList').appendChild(li)
     document.getElementById('items').value='';
+
+    const checkbox = document.createElement('INPUT')
+    checkbox.setAttribute("type", "checkbox");
+    li.appendChild(checkbox)
+    checkbox.onclick = function () {
+      li.classList.toggle("done", checkbox.checked);
+    };
+
 
     const btn = document.createElement('button')
     btn.textContent = 'Remove'
@@ -30,8 +59,7 @@ function itemAdd(){
     btn.addEventListener('click', function(){
         li.remove();
     })
-    const checkbox = document.createElement('checkbox')
-    li.appendChild(checkbox)
+    
     
 }
 document.getElementById('add').addEventListener('click', itemAdd)
